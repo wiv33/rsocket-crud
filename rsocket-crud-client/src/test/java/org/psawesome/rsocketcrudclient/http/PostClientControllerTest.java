@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.rsocket.context.RSocketServerBootstrap;
+import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -24,11 +26,21 @@ class PostClientControllerTest {
     void setUp() {
         client = WebClient.builder().baseUrl("localhost:8090/posts")
                 .build();
+
+        testClient = WebTestClient.bindToServer()
+                .baseUrl("localhost:8090/posts").build();
     }
 
     @Test
     void testNotNullClient() {
         Assertions.assertNotNull(client);
+    }
+
+    WebTestClient testClient;
+
+    @Test
+    void testNotNullWebTestClient() {
+        Assertions.assertNotNull(testClient);
     }
 
     @Test
