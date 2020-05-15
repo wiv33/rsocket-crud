@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.7.RELEASE'
+    id 'org.springframework.boot' version '2.3.0.RC1'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
 }
@@ -9,33 +9,26 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 configurations {
+    println("configurations")
     compileOnly {
         extendsFrom annotationProcessor
     }
 }
 
 repositories {
+    println("repositories")
     mavenCentral()
-    maven { url "https://repo.spring.io/libs-milestone"}
+    maven { url 'https://repo.spring.io/milestone' }
 }
 
 dependencies {
-    implementation 'org.spring.framework.boot:spring-boot-starter-webflux:'
+    println("dependencies")
+    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
     implementation 'org.springframework.boot:spring-boot-starter-rsocket'
-
-    // https://mvnrepository.com/artifact/org.springframework.boot.experimental/spring-boot-starter-r2dbc-h2
-    compile group: 'org.springframework.boot.experimental', name: 'spring-boot-starter-r2dbc-h2', version: '0.1.0.M1'
-
-//    compile group: 'org.springframework.boot.experimental', name: 'spring-boot-bom-r2dbc', version: '0.1.0.M2', ext: 'pom'
-
-    implementation 'org.springframework.data:spring-data-r2dbc:1.0.0.RELEASE'
-
-//    compile group: 'io.r2dbc', name: 'r2dbc-spi', version: '0.8.1.RELEASE'
-    implementation 'io.r2dbc:r2dbc-h2:0.8.3.RELEASE'
-//    implementation 'io.r2dbc:r2dbc-postgresql'
-
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
     compileOnly 'org.projectlombok:lombok'
-    implementation 'com.h2database:h2'
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'io.r2dbc:r2dbc-h2'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

@@ -2,6 +2,7 @@ package org.psawesome.rsocketcrud.api;
 
 import io.r2dbc.spi.ConnectionFactories;
 import io.r2dbc.spi.ConnectionFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -18,21 +19,22 @@ import org.springframework.transaction.ReactiveTransactionManager;
 public class DatabaseConfig extends AbstractR2dbcConfiguration {
 
     @Override
-    @Bean
+    @Bean("connectionFactory")
     public ConnectionFactory connectionFactory() {
 
-        ConnectionFactory factory = ConnectionFactories.get("r2dbc:h2:mem:///test?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE");
-//        see: https://github.com/spring-projects/spring-data-r2dbc/issues/269
+        ConnectionFactory factory = ConnectionFactories.get("r2dbc:h2:mem:///testdb?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE");
         return factory;
+//        see: https://github.com/spring-projects/spring-data-r2dbc/issues/269
+//        return H2ConnectionFactory.inMemory("testdb");
     }
 
     @Bean
-    public ReactiveTransactionManager transactionManager(ConnectionFactory connectionFactory) {
+    public ReactiveTransactionManager transactionManager(@Qualifier("connectionFactory") ConnectionFactory connectionFactory) {
         return new R2dbcTransactionManager(connectionFactory);
     }
 
     @Bean
-    public ConnectionFactoryInitializer initializer(ConnectionFactory connectionFactory) {
+    public ConnectionFactoryInitializer initializer(@Qualifier("connectionFactory") ConnectionFactory connectionFactory) {
         ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
         initializer.setConnectionFactory(connectionFactory);
         CompositeDatabasePopulator populator = new CompositeDatabasePopulator();
