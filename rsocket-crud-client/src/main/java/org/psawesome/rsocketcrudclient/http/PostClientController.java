@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@RestController
+//@RestController
 @RequiredArgsConstructor
-@RequestMapping("/posts")
+//@RequestMapping("/posts")
 public class PostClientController {
 
     private final RSocketRequester requester;
