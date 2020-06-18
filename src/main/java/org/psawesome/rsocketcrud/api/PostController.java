@@ -25,17 +25,16 @@ public class PostController {
     }
 
     @MessageMapping("posts.save")
-    public Mono<MyPost> update(@DestinationVariable("id") Long id, @Payload MyPost post) {
-        Mono<MyPost> map = this.posts.findById(id)
-                .map(p -> {
-                    p.setTitle(post.getTitle());
-                    p.setContent(post.getContent());
-                    return p;
-                });
+    public Mono<MyPost> update(@Payload MyPost post) {
+//        Mono<MyPost> map = this.posts.findById(id)
+//                .map(p -> {
+//                    p.setTitle(post.getTitle());
+//                    p.setContent(post.getContent());
+//                    return p;
+//                });
 //        Mono<Mono<MyPost>> map1 = map.map(d -> this.posts
 //                .save(post));
-        return map
-                .flatMap(this.posts::save);
+        return this.posts.save(post);
     }
 
     @MessageMapping("posts.deleteById.{id}")

@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.psawesome.rsocketcrudclient.http.handler.MyPostHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.web.reactive.function.server.*;
+import org.springframework.web.reactive.function.server.RequestPredicates;
+import org.springframework.web.reactive.function.server.RouterFunction;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
@@ -26,6 +26,9 @@ public class MyPostRouter {
                     GET("/posts/{id}")
                             .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)),
                     myPostHandler::findById)
+            .andRoute(POST("/posts")
+            ,
+                    myPostHandler::create)
             ;
 
         /*

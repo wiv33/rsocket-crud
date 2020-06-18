@@ -2,14 +2,11 @@ package org.psawesome.rsocketcrudclient.http.handler;
 
 import lombok.RequiredArgsConstructor;
 import org.psawesome.rsocketcrudclient.http.MyPost;
-import org.springframework.boot.autoconfigure.rsocket.RSocketProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.messaging.rsocket.RSocketRequester;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Component
@@ -32,5 +29,12 @@ public class MyPostHandler {
                     .retrieveMono(MyPost.class), MyPost.class)
             .doOnError(throwable -> ServerResponse.notFound());
   }
+
+  public Mono<ServerResponse> create(ServerRequest request) {
+    // TODO create logic
+    return Mono.empty();
+  }
+
+
 
 }

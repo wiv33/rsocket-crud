@@ -1,0 +1,11 @@
+POST http://localhost:8095/posts
+Content-Type: application/json
+
+{
+  "title": "hello ps",
+  "content": "my body is'nt"
+}
+
+###
+GET http://localhost:8095/posts
+
