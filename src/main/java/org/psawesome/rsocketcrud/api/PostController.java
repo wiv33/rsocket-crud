@@ -51,6 +51,7 @@ public class PostController {
   @MessageMapping("posts.deleteById.{id}")
   public Mono<Void> delete(@DestinationVariable("id") Long id) {
     log.info("Destination DELETE Id : {}", id);
+
     return this.repository.deleteById(id)
             .log();
   }

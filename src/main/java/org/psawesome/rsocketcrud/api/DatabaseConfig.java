@@ -18,29 +18,28 @@ import org.springframework.transaction.ReactiveTransactionManager;
 @EnableR2dbcRepositories
 public class DatabaseConfig extends AbstractR2dbcConfiguration {
 
-    @Override
-    @Bean("connectionFactory")
-    public ConnectionFactory connectionFactory() {
+  @Override
+  @Bean("connectionFactory")
+  public ConnectionFactory connectionFactory() {
+    ConnectionFactory factory = ConnectionFactories.get("r2dbc:h2:mem:///testdb?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE");
+    return factory;
+//    see: https://github.com/spring-projects/spring-data-r2dbc/issues/269
+//    return H2ConnectionFactory.inMemory("testdb");
+  }
 
-        ConnectionFactory factory = ConnectionFactories.get("r2dbc:h2:mem:///testdb?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE");
-        return factory;
-//        see: https://github.com/spring-projects/spring-data-r2dbc/issues/269
-//        return H2ConnectionFactory.inMemory("testdb");
-    }
+  @Bean
+  public ReactiveTransactionManager transactionManager(@Qualifier("connectionFactory") ConnectionFactory connectionFactory) {
+    return new R2dbcTransactionManager(connectionFactory);
+  }
 
-    @Bean
-    public ReactiveTransactionManager transactionManager(@Qualifier("connectionFactory") ConnectionFactory connectionFactory) {
-        return new R2dbcTransactionManager(connectionFactory);
-    }
-
-    @Bean
-    public ConnectionFactoryInitializer initializer(@Qualifier("connectionFactory") ConnectionFactory connectionFactory) {
-        ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
-        initializer.setConnectionFactory(connectionFactory);
-        CompositeDatabasePopulator populator = new CompositeDatabasePopulator();
-        populator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("schema.sql")));
-        populator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("data.sql")));
-        initializer.setDatabasePopulator(populator);
-        return initializer;
-    }
+  @Bean
+  public ConnectionFactoryInitializer initializer(@Qualifier("connectionFactory") ConnectionFactory connectionFactory) {
+    ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
+    initializer.setConnectionFactory(connectionFactory);
+    CompositeDatabasePopulator populator = new CompositeDatabasePopulator();
+    populator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("schema.sql")));
+    populator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("data.sql")));
+    initializer.setDatabasePopulator(populator);
+    return initializer;
+  }
 }
