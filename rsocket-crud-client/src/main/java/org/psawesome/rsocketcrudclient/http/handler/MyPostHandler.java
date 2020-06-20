@@ -27,25 +27,30 @@ public class MyPostHandler {
   public Mono<ServerResponse> findById(ServerRequest req) {
     return ok()
             .contentType(MediaType.APPLICATION_JSON)
-            .body(this.requester.route(String.format("posts.findById.%d", Long.parseLong(req.pathVariable("id"))))
-                    .retrieveMono(MyPost.class), MyPost.class)
+            .body(this.requester.route(String.format("posts.findById.%d", Long.parseLong(req.pathVariable("id")))
+                    )
+                            .retrieveMono(MyPost.class),
+                    MyPost.class)
             .doOnError(throwable -> ServerResponse.notFound());
   }
 
   public Mono<ServerResponse> save(ServerRequest req) {
-    return ok().body(req.bodyToMono(MyPost.class), MyPost.class);
+    return ok().body(this.requester.route("posts.save")
+                    .data(req.bodyToMono(MyPost.class))
+                    .retrieveMono(MyPost.class),
+            MyPost.class);
   }
 
 
   public Mono<ServerResponse> update(ServerRequest req) {
-    return ok().body(requester.route(String.format("posts.update.%s", req.pathVariable("id")))
+    return ok().body(this.requester.route(String.format("posts.update.%s", req.pathVariable("id")))
                     .data(req.bodyToMono(MyPost.class))
                     .retrieveMono(MyPost.class),
             MyPost.class);
   }
 
   public Mono<ServerResponse> delete(ServerRequest req) {
-    return ok().body(requester.route(String.format("posts.deleteById.%s", req.pathVariable("id")))
+    return ok().body(this.requester.route(String.format("posts.deleteById.%s", req.pathVariable("id")))
                     .retrieveFlux(MyPost.class),
             MyPost.class);
   }

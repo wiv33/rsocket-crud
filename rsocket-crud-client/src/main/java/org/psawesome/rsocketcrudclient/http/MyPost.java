@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MyPost {
 
-    private Long id;
+  private Long id;
 
-    private String title;
+  private String title;
 
-    private String content;
+  private String content;
 }

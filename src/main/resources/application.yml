@@ -3,3 +3,6 @@ spring:
     server:
       port: 7000
       transport: tcp
+
+  jpa:
+    show-sql: true

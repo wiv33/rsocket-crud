@@ -1,0 +1,7 @@
+POST http://localhost:8095/posts
+Content-Type: application/json
+
+{
+  "title": "ps",
+  "content": "awesome"
+}
