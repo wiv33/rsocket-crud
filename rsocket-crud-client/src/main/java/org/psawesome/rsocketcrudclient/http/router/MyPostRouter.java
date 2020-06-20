@@ -25,7 +25,7 @@ public class MyPostRouter {
                     myPostHandler::save)
             .andRoute(PUT("/posts/{id}").and(accept(MediaType.APPLICATION_JSON)),
                     myPostHandler::update)
-            .andRoute(DELETE("/posts/{id}").and(accept(MediaType.APPLICATION_JSON)),
+            .andRoute(DELETE("/posts/{id}"),
                     myPostHandler::delete)
             ;
 

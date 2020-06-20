@@ -23,7 +23,7 @@ class PostClientControllerTest {
 
   @BeforeEach
   void setUp() {
-    String baseUrl = "http://localhost:8095/posts";
+    String baseUrl = "http://localhost:8080/posts";
     System.setProperty("Dcom.couchbase.client.core.deps.io.netty.noUnsafe", "true");
 
     client = WebClient

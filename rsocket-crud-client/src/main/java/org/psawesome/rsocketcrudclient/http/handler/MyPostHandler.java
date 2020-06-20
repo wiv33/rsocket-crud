@@ -50,8 +50,9 @@ public class MyPostHandler {
   }
 
   public Mono<ServerResponse> delete(ServerRequest req) {
-    return ok().body(this.requester.route(String.format("posts.deleteById.%s", req.pathVariable("id")))
-                    .retrieveFlux(MyPost.class),
+    return ok().body(this.requester
+                    .route(String.format("posts.deleteById.%d", Long.parseLong(req.pathVariable("id"))))
+                    .send(),
             MyPost.class);
   }
 

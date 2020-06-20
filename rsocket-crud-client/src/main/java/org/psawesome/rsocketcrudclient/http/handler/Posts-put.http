@@ -1,0 +1,7 @@
+PUT http://localhost:8080/posts/2
+Content-Type: application/json
+
+{
+  "title": "psawesome",
+  "content": "awe...."
+}
