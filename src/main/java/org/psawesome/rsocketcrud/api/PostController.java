@@ -23,7 +23,7 @@ public class PostController {
 
   @MessageMapping("posts.findById.{id}")
   public Mono<MyPost> get(@DestinationVariable("id") Long id) {
-    log.info("Destination Id : {}", id);
+    log.info("Destination FIND Id : {}", id);
     return this.repository.findById(id)
             .log();
   }
@@ -37,7 +37,7 @@ public class PostController {
 
   @MessageMapping("posts.update.{id}")
   public Mono<MyPost> update(@Payload MyPost post, @DestinationVariable("id") Long id) {
-    log.info("Destination Id : {}, Payload myPost : {}", id, post);
+    log.info("Destination UPDATE Id : {}, Payload myPost : {}", id, post);
     return this.repository.findById(id)
             .map(p -> {
               p.setTitle(post.getTitle());
@@ -50,7 +50,7 @@ public class PostController {
 
   @MessageMapping("posts.deleteById.{id}")
   public Mono<Void> delete(@DestinationVariable("id") Long id) {
-    log.info("Destination Id : {}", id);
+    log.info("Destination DELETE Id : {}", id);
     return this.repository.deleteById(id)
             .log();
   }
