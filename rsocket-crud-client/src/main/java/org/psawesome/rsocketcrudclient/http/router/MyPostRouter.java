@@ -8,8 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.RequestPredicates;
 import org.springframework.web.reactive.function.server.RouterFunction;
 
-import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
-import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
+import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
@@ -18,17 +17,16 @@ public class MyPostRouter {
 
   @Bean
   RouterFunction<?> postRouter(MyPostHandler myPostHandler) {
-    return route(
-            GET("/posts")
-                    .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)),
+    return route(GET("/posts").and(accept(MediaType.APPLICATION_JSON)),
             myPostHandler::findAll)
-            .andRoute(
-                    GET("/posts/{id}")
-                            .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)),
+            .andRoute(GET("/posts/{id}").and(accept(MediaType.APPLICATION_JSON)),
                     myPostHandler::findById)
-            .andRoute(POST("/posts")
-            ,
-                    myPostHandler::create)
+            .andRoute(POST("/posts"),
+                    myPostHandler::save)
+            .andRoute(PUT("/posts/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                    myPostHandler::update)
+            .andRoute(DELETE("/posts/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                    myPostHandler::delete)
             ;
 
         /*
