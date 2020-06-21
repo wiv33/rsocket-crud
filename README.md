@@ -26,11 +26,10 @@
 
 - base url  
 
-    `http://localhost:8080`
+    **`http://localhost:8080`**
 
-- find
+- **Retrieve(find)**
 > > > see httpie: [git find url](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/handler/Posts-find.http)  
->
 >
 > all  
 > > /posts  
@@ -39,9 +38,9 @@
 > > /posts/1
 ---
 
+- **create**
 > > > see httpie: [git create url](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/handler/Posts.save.http)
 >
-> create
 > > /posts  
 > > Content-Type: application/json  
 > > {title: "your title", content: "your content"}
@@ -49,17 +48,17 @@
 
 ---
 
+- **update**
 > > > see httpie: [git put url](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/handler/Posts-put.http)
 >
-> update
 > > /posts/2  
 > > Content-Type: application/json  
 > > {title: "update your title", content: "update your content"}  
 >
 ---
+- **delete**
 > > > see httpie: [git delete url](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/handler/Posts-delete.http)
 >
-> delete
 > > /posts/2
 >
 >
