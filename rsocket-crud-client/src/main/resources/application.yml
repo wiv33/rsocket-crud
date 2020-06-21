@@ -2,4 +2,9 @@ server:
   port: 8080
   http2:
     enabled: true
-
+#debug: true
+spring:
+  profiles: dev
+---
+spring:
+  profiles: prod

@@ -6,4 +6,4 @@ spring:
 
   jpa:
     show-sql: true
-debug: true
+#debug: true

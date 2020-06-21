@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  ps_rsocket_server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        JAR_FILE: build/libs/*.jar
+    container_name: rsocket-server
+    hostname: localhost
+    image: psawesome/rsocket-server
+    ports:
+      - "7000:7000"
+    networks:
+      - ps_rsocket_posts
+
+networks:
+  ps_rsocket_posts:
+    driver: bridge
+    internal: true
+    external: true

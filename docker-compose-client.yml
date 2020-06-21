@@ -1,17 +1,6 @@
 version: '3.7'
 
 services:
-  ps_rsocket_server:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        JAR_FILE: build/libs/*.jar
-    hostname: rsocket-server
-    image: psawesome/rsocket-server
-    networks:
-      - ps_rsocket_posts
-
   ps_rsocket_client:
     build:
       context: ./rsocket-crud-client
@@ -20,13 +9,10 @@ services:
         JAR_FILE: build/libs/*.jar
 
     image: psawesome/rsocket-client
-    hostname: rsocket-client
-    expose:
-      - 8080
+    container_name: rsocket-client
+    hostname: localhost
     ports:
-      - 8080:8080
-    depends_on:
-      - ps_rsocket_server
+      - "8080:8080"
 
     networks:
       - ps_rsocket_posts

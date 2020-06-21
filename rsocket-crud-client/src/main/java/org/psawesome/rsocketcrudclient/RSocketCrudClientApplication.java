@@ -9,6 +9,7 @@ import org.springframework.web.reactive.config.EnableWebFlux;
 public class RSocketCrudClientApplication {
 
     public static void main(String[] args) {
+//        System.setProperty("spring.profiles.active", "dev");
         SpringApplication.run(RSocketCrudClientApplication.class, args);
     }
 
