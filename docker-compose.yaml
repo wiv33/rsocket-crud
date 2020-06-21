@@ -15,7 +15,7 @@ services:
   ps_rsocket_client:
     build:
       context: ./rsocket-crud-client
-      dockerfile: Dockerfile-client
+      dockerfile: Dockerfile
       args:
         JAR_FILE: build/libs/*.jar
 

@@ -5,6 +5,11 @@
 - git clone  
 `https://github.com/wvi33/rsocket-crud.git`
 
+- build  
+  **you could make file the jar by gradle**
+  - rsocket-crud
+  - rsocket-crud-client
+
 - docker create network  
 `docker network create ps_rsocket_posts`
 

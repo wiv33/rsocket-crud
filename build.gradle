@@ -21,7 +21,7 @@ ext {
 docker {
     name 'hub.docker.com/psawesome/ps-test-example'
     tag 'myRegistry', "ps-test-example-${project.version}_${BUILD_VERSION}"
-    dockerfile file('Dockerfile-client')
+    dockerfile file('Dockerfile')
     files tasks.bootJar.outputs.files
     buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name])
     labels(['key': 'value'])
