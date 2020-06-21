@@ -62,3 +62,8 @@
 > delete
 > > /posts/2
 >
+>
+
+### Go to test code
+
+[Test case of client](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/test/java/org/psawesome/rsocketcrudclient/http/PostClientControllerTest.java)
