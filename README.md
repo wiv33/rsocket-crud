@@ -68,6 +68,14 @@
 > > /posts/2
 >
 >
+## Create Dockerfile
+
+    ./gradlew docker
+    ./gradlew dockerPushDockerHub 
+
+![gradle location](./img/Screenshot%20from%202020-06-21%2021-02-53.png)
+
+---
 
 ### Go to client code
 
