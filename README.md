@@ -53,10 +53,8 @@
 >
 > update
 > > /posts/2  
->
-> > Content-Type: application/json
->  
-> > {title: "update your title", content: "update your content"}
+> > Content-Type: application/json  
+> > {title: "update your title", content: "update your content"}  
 >
 ---
 > > > see httpie: [git delete url](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/handler/Posts-delete.http)
