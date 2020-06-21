@@ -20,7 +20,7 @@ ext {
 
 docker {
     name 'psawesome/rsocket-server'
-    tag 'myRegistry', "rsocket-server-${project.version}_${BUILD_VERSION}"
+    tag 'DockerHub', "psawesome/rsocket-server:${project.version}_${BUILD_VERSION}"
     dockerfile file('Dockerfile')
     files tasks.bootJar.outputs.files
     buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name])
