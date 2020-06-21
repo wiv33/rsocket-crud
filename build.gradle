@@ -1,12 +1,42 @@
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 plugins {
     id 'org.springframework.boot' version '2.3.0.RC1'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
+    id 'maven-publish'
+    id 'com.palantir.docker' version '0.22.1'
+//    id 'com.palantir.docker-compose' varsion '0.22.1'
 }
 
 group = 'org.psawesome'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+ext {
+    BUILD_VERSION = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH_mm_ss"))
+}
+
+docker {
+    name 'hub.docker.com/psawesome/ps-test-example'
+    tag 'myRegistry', "ps-test-example-${project.version}_${BUILD_VERSION}"
+    dockerfile file('Dockerfile-client')
+    files tasks.bootJar.outputs.files
+    buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name])
+    labels(['key': 'value'])
+    pull true
+    noCache true
+}
+
+publishing {
+    publications {
+        dockerPublication(MavenPublication) {
+            from components.docker
+            artifactId project.name + "-docker"
+        }
+    }
+}
 
 configurations {
     println("configurations")

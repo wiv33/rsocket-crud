@@ -11,4 +11,5 @@ pluginManagement {
         }
     }
 }
+//rootProject.name = 'rsocket-crud'
 rootProject.name = 'rsocket-crud-client'
