@@ -27,15 +27,16 @@ public class MyPostHandler {
   public Mono<ServerResponse> findById(ServerRequest req) {
     return ok()
             .contentType(MediaType.APPLICATION_JSON)
-            .body(this.requester.route(String.format("posts.findById.%d", Long.parseLong(req.pathVariable("id")))
-                    )
+            .body(this.requester
+                            .route(String.format("posts.findById.%d", Long.parseLong(req.pathVariable("id"))))
                             .retrieveMono(MyPost.class),
                     MyPost.class)
             .doOnError(throwable -> ServerResponse.notFound());
   }
 
   public Mono<ServerResponse> save(ServerRequest req) {
-    return ok().body(this.requester.route("posts.save")
+    return ok().body(this.requester
+                    .route("posts.save")
                     .data(req.bodyToMono(MyPost.class))
                     .retrieveMono(MyPost.class),
             MyPost.class);
@@ -43,7 +44,8 @@ public class MyPostHandler {
 
 
   public Mono<ServerResponse> update(ServerRequest req) {
-    return ok().body(this.requester.route(String.format("posts.update.%s", req.pathVariable("id")))
+    return ok().body(this.requester
+                    .route(String.format("posts.update.%s", req.pathVariable("id")))
                     .data(req.bodyToMono(MyPost.class))
                     .retrieveMono(MyPost.class),
             MyPost.class);
