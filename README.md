@@ -64,6 +64,12 @@
 >
 >
 
-### Go to test code
+### Go to client code
 
 [Test case of client](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/test/java/org/psawesome/rsocketcrudclient/http/PostClientControllerTest.java)
+
+[RSocketRequester Configuration](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/RSocketRequesterBean.java)
+
+[RouteFunction](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/router/MyPostRouter.java)
+
+[Handler](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/handler/MyPostHandler.java)
