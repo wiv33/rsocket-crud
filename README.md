@@ -13,13 +13,14 @@
 - docker create network  
 `docker network create ps_rsocket_posts`
 
-- docker-compose  
-`docker-compose -f docker-compose.yaml up -d`
+- docker-compose  (__required delay 1000ms__)  
+`docker-compose -f docker-compose-server.yml up -d`      
+`docker-comopse -f docker-compose-client.yml up -d`  
 
 ## end command
 
 - shutdown  
-`docker-compose down -f docker-compose.yaml`
+`docker-compose down -f docker-compose-server.yml -f docker-compose-client-yml`
 
 - remove network    
 `docker network remove ps_rsocket_posts`
