@@ -21,6 +21,8 @@ services:
 
     image: psawesome/rsocket-client
     hostname: rsocket-client
+    expose:
+      - 8080
     ports:
       - 8080:8080
     depends_on:
@@ -31,5 +33,6 @@ services:
 
 networks:
   ps_rsocket_posts:
+    driver: bridge
     internal: true
     external: true
