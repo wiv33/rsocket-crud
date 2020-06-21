@@ -8,7 +8,7 @@
 - docker create network  
 `docker network create ps_rsocket_posts`
 
-- docker-compose
+- docker-compose  
 `docker-compose -f docker-compose.yaml up -d`
 
 ## end command
@@ -16,7 +16,7 @@
 - shutdown  
 `docker-compose down -f docker-compose.yaml`
 
-- remove network  
+- remove network    
 `docker network remove ps_rsocket_posts`
 
 
@@ -29,7 +29,7 @@
     `http://localhost:8080`
 
 - find
-> > > see httpie: [git find url](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/handler/Posts-find.http)
+> > > see httpie: [git find url](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/handler/Posts-find.http)  
 >
 >
 > all  
@@ -52,9 +52,12 @@
 > > > see httpie: [git put url](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/handler/Posts-put.http)
 >
 > update
-> > /posts/2
+> > /posts/2  
+>
 > > Content-Type: application/json
+>  
 > > {title: "update your title", content: "update your content"}
+>
 ---
 > > > see httpie: [git delete url](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/handler/Posts-delete.http)
 >
