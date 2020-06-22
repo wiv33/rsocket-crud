@@ -114,9 +114,52 @@ class PostClientControllerTest {
 
   @Test
   void update() {
+    StepVerifier
+            .create(client.post()
+                    .body(Mono.just(MyPost.builder()
+                            .title("ps")
+                            .content("awesome")
+                            .build()), MyPost.class)
+                    .retrieve()
+                    .bodyToMono(MyPost.class))
+            .expectNextCount(1)
+            .assertNext(myPost -> assertAll(
+                    () -> assertEquals(2L, myPost.getId()),
+                    () -> assertEquals("ps", myPost.getTitle()),
+                    () -> assertEquals("awesome", myPost.getContent())
+            ))
+            .verifyComplete();
+
+    testClient.put()
+            .uri("/posts/{id}", 2)
+            .body(Mono.just(MyPost.builder()
+                    .title("pp-title")
+                    .content("ps-content")
+                    .build()), MyPost.class)
+            .accept(MediaType.APPLICATION_JSON)
+            .exchange()
+            .expectStatus()
+            .isOk()
+            .expectBody(MyPost.class)
+            .value(myPost -> assertAll(
+                    () -> assertEquals(2L, myPost.getId()),
+                    () -> assertEquals("pp-title", myPost.getTitle()),
+                    () -> assertEquals("ps-content", myPost.getContent())
+            ))
+    ;
+
   }
 
   @Test
   void delete() {
+    client.delete()
+            .uri("/{id}", 2)
+            .exchange()
+            .subscribe(response -> {
+              assertTrue(response.statusCode().is2xxSuccessful());
+              assertThrows(Exception.class, () -> client
+                      .get().uri("/{id}", 2));
+            });
+
   }
 }
