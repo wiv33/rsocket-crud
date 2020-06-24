@@ -23,7 +23,7 @@
 ## end command
 
 - shutdown  
-`docker-compose down -f docker-compose.yml`
+`docker-compose down -f docker-compose.yml`  
 ~~docker-compose down -f docker-compose-server.yml -f docker-compose-client-yml~~
 
 - remove network    
