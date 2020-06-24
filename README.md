@@ -89,6 +89,6 @@
 
 [RSocketRequester Configuration](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/RSocketRequesterBean.java)
 
-[RouteFunction](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/router/MyPostRouter.java)
+[RouterFunction](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/router/MyPostRouter.java)
 
 [Handler](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/handler/MyPostHandler.java)
