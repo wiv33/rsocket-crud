@@ -38,6 +38,8 @@
 
     **`http://localhost:8080`**
 
+---
+
 - **Retrieve(find)**
 > > > see httpie: [git find url](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/handler/Posts-find.http)  
 >
