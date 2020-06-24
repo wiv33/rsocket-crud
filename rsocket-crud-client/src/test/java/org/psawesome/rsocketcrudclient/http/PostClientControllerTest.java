@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.psawesome.rsocketcrudclient.http.router.MyPostRouter;
+import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -17,10 +17,14 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@WebFluxTest(properties = "application.yml")
 class PostClientControllerTest {
 
   WebClient client;
   WebTestClient testClient;
+
+  WebTestClient routeClient;
+
 
   @BeforeEach
   void setUp() {
@@ -33,8 +37,13 @@ class PostClientControllerTest {
             .build();
 
     testClient = WebTestClient
-            .bindToController(MyPostRouter.class)
+            .bindToServer()
+            .baseUrl(baseUrl)
             .build();
+
+//    routeClient = WebTestClient
+//            .bindToRouterFunction(myPostRouter.postRouter())
+//            .build();
   }
 
   @Test
@@ -63,7 +72,8 @@ class PostClientControllerTest {
                             assertAll(
                                     () -> Assertions.assertTrue(results.contains(myPost))
                             )
-            ).expectComplete()
+            )
+            .thenCancel()
             .verify();
   }
 
@@ -71,7 +81,23 @@ class PostClientControllerTest {
   @DisplayName("posts 검색")
   void findById() {
     testClient.get()
-            .uri("/posts/{id}", 1)
+            .uri("/{id}", 1)
+            .exchange()
+            .expectBody(MyPost.class)
+            .consumeWith(res ->
+                    assertAll(
+                            () -> assertNotNull(res.getResponseBody()),
+                            () -> assertEquals(1L, Objects.requireNonNull(res.getResponseBody()).getId()),
+                            () -> assertEquals("post one in data.sql", res.getResponseBody().getTitle()),
+                            () -> assertEquals("content of post one in data.sql", res.getResponseBody().getContent())
+                    )
+            );
+  }
+  @Test
+  @DisplayName("posts 검색 - RouterFunctionClient")
+  void findByIdRouterTestClient() {
+    routeClient.get()
+            .uri("/{id}", 1)
             .exchange()
             .expectBody(MyPost.class)
             .consumeWith(res ->
@@ -88,7 +114,7 @@ class PostClientControllerTest {
   @DisplayName("저장")
   void save() {
     StepVerifier.create(client.post()
-            .uri("/posts")
+//            .uri("/posts")
             .accept(MediaType.APPLICATION_JSON)
             .body(Mono.just(MyPost.builder()
                             .title("ps")
@@ -135,7 +161,7 @@ class PostClientControllerTest {
             .verifyComplete();
 
     testClient.put()
-            .uri("/posts/{id}", 2)
+            .uri("/{id}", 2)
             .body(Mono.just(MyPost.builder()
                     .title("pp-title")
                     .content("ps-content")

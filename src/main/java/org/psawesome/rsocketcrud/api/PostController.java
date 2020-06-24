@@ -25,14 +25,14 @@ public class PostController {
   public Mono<MyPost> get(@DestinationVariable("id") Long id) {
     log.info("Destination FIND Id : {}", id);
     return this.repository.findById(id)
-            .log();
+            .log("get --> ");
   }
 
   @MessageMapping("posts.save")
   public Mono<MyPost> save(@Payload MyPost post) {
     log.info("Payload post data :{} ", post.toString());
     return this.repository.save(post)
-            .log();
+            .log("save --> ");
   }
 
   @MessageMapping("posts.update.{id}")
@@ -44,7 +44,7 @@ public class PostController {
               p.setContent(post.getContent());
               return p;
             })
-            .flatMap(d -> this.repository.save(post))
+            .flatMap(this.repository::save)
             .log();
   }
 

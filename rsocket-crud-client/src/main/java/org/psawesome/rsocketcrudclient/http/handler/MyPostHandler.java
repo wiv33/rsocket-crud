@@ -21,7 +21,9 @@ public class MyPostHandler {
     return ok()
             .contentType(MediaType.APPLICATION_JSON)
             .body(this.requester.route("posts.findAll")
-                    .retrieveFlux(MyPost.class), MyPost.class);
+                    .retrieveFlux(MyPost.class), MyPost.class)
+            .log()
+            .doOnError(throwable -> ServerResponse.noContent());
   }
 
   public Mono<ServerResponse> findById(ServerRequest req) {
@@ -31,6 +33,7 @@ public class MyPostHandler {
                             .route(String.format("posts.findById.%d", Long.parseLong(req.pathVariable("id"))))
                             .retrieveMono(MyPost.class),
                     MyPost.class)
+            .log("findById --> ")
             .doOnError(throwable -> ServerResponse.notFound());
   }
 
@@ -48,14 +51,16 @@ public class MyPostHandler {
                     .route(String.format("posts.update.%s", req.pathVariable("id")))
                     .data(req.bodyToMono(MyPost.class))
                     .retrieveMono(MyPost.class),
-            MyPost.class);
+            MyPost.class)
+            .log();
   }
 
   public Mono<ServerResponse> delete(ServerRequest req) {
     return ok().body(this.requester
                     .route(String.format("posts.deleteById.%d", Long.parseLong(req.pathVariable("id"))))
                     .send(),
-            MyPost.class);
+            MyPost.class)
+            .log();
   }
 
 }

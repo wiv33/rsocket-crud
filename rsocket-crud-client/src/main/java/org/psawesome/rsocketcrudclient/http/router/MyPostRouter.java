@@ -5,7 +5,6 @@ import org.psawesome.rsocketcrudclient.http.handler.MyPostHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
-import org.springframework.web.reactive.function.server.RequestPredicates;
 import org.springframework.web.reactive.function.server.RouterFunction;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.*;
@@ -15,8 +14,10 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @RequiredArgsConstructor
 public class MyPostRouter {
 
+  private final MyPostHandler myPostHandler;
+
   @Bean
-  RouterFunction<?> postRouter(MyPostHandler myPostHandler) {
+  public RouterFunction<?> postRouter() {
     return route(GET("/posts").and(accept(MediaType.APPLICATION_JSON)),
             myPostHandler::findAll)
             .andRoute(GET("/posts/{id}").and(accept(MediaType.APPLICATION_JSON)),
