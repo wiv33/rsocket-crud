@@ -13,9 +13,12 @@
 - docker create network  
 `docker network create ps_rsocket_posts`
 
-- docker-compose  (__required delay 1000ms__)  
-`docker-compose -f docker-compose-server.yml up -d`      
-`docker-comopse -f docker-compose-client.yml up -d`  
+- docker-compose  ~~(__required delay 1000ms__)~~
+
+    `docker-comopose -f docker-compose.yml up`    
+    
+~~docker-compose -f docker-compose-server.yml up -d~~      
+~~docker-comopse -f docker-compose-client.yml up -d~~  
 
 ## end command
 

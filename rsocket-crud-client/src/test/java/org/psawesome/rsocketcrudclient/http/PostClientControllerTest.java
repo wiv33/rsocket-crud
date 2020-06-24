@@ -2,6 +2,7 @@ package org.psawesome.rsocketcrudclient.http;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.psawesome.rsocketcrudclient.http.router.MyPostRouter;
 import org.springframework.http.MediaType;
@@ -47,6 +48,7 @@ class PostClientControllerTest {
   }
 
   @Test
+  @DisplayName("Posts 전체 검색")
   void findAll() {
     Flux<MyPost> mapMono = client.get()
             .retrieve()
@@ -66,6 +68,7 @@ class PostClientControllerTest {
   }
 
   @Test
+  @DisplayName("posts 검색")
   void findById() {
     testClient.get()
             .uri("/posts/{id}", 1)
@@ -82,6 +85,7 @@ class PostClientControllerTest {
   }
 
   @Test
+  @DisplayName("저장")
   void save() {
     StepVerifier.create(client.post()
             .uri("/posts")

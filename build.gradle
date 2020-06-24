@@ -28,6 +28,30 @@ docker {
     pull true
     noCache true
 }
+
+task createNetwork(type: Exec) {
+    doFirst {
+        println()
+        println("==========create NETWORK==========")
+    }
+    doLast {
+        println()
+        println("============END=============")
+    }
+    println("task run??? ${buildDir.name}")
+    workingDir "$buildDir/"
+    commandLine 'docker'
+    args  'network', 'create', 'ps_rsocket_posts'
+//
+//    workingDir "${getProjectDir().absolutePath}"
+//    commandLine 'docker-compose'
+//    args '-f', 'docker-compose.yml', 'up'
+
+    ext.output = {
+        return standardOutput.toString()
+    }
+}
+
 /*
 dockerComposeUp {
 
