@@ -2,7 +2,7 @@ FROM hirokimatsumoto/alpine-openjdk-11
 
 MAINTAINER PS
 VOLUME /tmp
-#EXPOSE 7000
+EXPOSE 7000
 
 # --build-arg build/libs/*.jar
 ARG JAR_FILE

@@ -13,4 +13,4 @@ COPY ${JAR_FILE} app-client.jar
 #"-Djava.security.egd=file:/dev/./urandom",
 #"-Dspring.profiles.active=prod",
 
-ENTRYPOINT ["java", "-jar","-Dspring.profiles.active=dev","/app-client.jar"]
+ENTRYPOINT ["java", "-jar","-Dspring.profiles.active=prod","/app-client.jar"]
