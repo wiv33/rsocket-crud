@@ -4,7 +4,8 @@ server:
     enabled: true
 #debug: true
 spring:
-  profiles: dev
+  profiles:
+    active: dev
 ---
 spring:
   profiles: prod

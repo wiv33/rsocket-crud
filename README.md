@@ -13,14 +13,18 @@
 - docker create network  
 `docker network create ps_rsocket_posts`
 
-- docker-compose  (__required delay 1000ms__)  
-`docker-compose -f docker-compose-server.yml up -d`      
-`docker-comopse -f docker-compose-client.yml up -d`  
+- docker-compose  ~~(__required delay 1000ms__)~~
+
+    `docker-comopose -f docker-compose.yml up`    
+    
+~~docker-compose -f docker-compose-server.yml up -d~~      
+~~docker-comopse -f docker-compose-client.yml up -d~~  
 
 ## end command
 
 - shutdown  
-`docker-compose down -f docker-compose-server.yml -f docker-compose-client-yml`
+`docker-compose down -f docker-compose.yml`  
+~~docker-compose down -f docker-compose-server.yml -f docker-compose-client-yml~~
 
 - remove network    
 `docker network remove ps_rsocket_posts`
@@ -33,6 +37,8 @@
 - base url  
 
     **`http://localhost:8080`**
+
+---
 
 - **Retrieve(find)**
 > > > see httpie: [git find url](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/handler/Posts-find.http)  
@@ -83,6 +89,6 @@
 
 [RSocketRequester Configuration](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/RSocketRequesterBean.java)
 
-[RouteFunction](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/router/MyPostRouter.java)
+[RouterFunction](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/router/MyPostRouter.java)
 
 [Handler](https://github.com/wiv33/rsocket-crud/blob/master/rsocket-crud-client/src/main/java/org/psawesome/rsocketcrudclient/http/handler/MyPostHandler.java)
