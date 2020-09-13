@@ -10,9 +10,9 @@ services:
 
     image: psawesome/rsocket-client
     container_name: rsocket-client
-#    hostname: localhost
+    hostname: rsocket-client
     ports:
-      - "8090:8090"
+      - "8080:8080"
 
     networks:
       - ps_rsocket_posts

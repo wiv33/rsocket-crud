@@ -8,6 +8,5 @@ spring:
   jpa:
     show-sql: true
 server:
-  port: 8090
   address: rsocket-server
 #debug: true

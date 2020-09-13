@@ -9,7 +9,7 @@ services:
       args:
         JAR_FILE: build/libs/*.jar
     container_name: rsocket-server
-    hostname: localhost
+    hostname: rsocket-server
     image: psawesome/rsocket-server
     ports:
       - "7000:7000"
@@ -26,9 +26,9 @@ services:
 
     image: psawesome/rsocket-client
     container_name: rsocket-client
-#    hostname: localhost
+    hostname: rsocket-client
     ports:
-      - "8090:8090"
+      - "8080:8080"
 
     depends_on:
       - ps_rsocket_server
