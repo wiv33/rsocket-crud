@@ -3,7 +3,7 @@
 ## ready command
 
 - git clone  
-`https://github.com/wvi33/rsocket-crud.git`
+`https://github.com/wiv33/rsocket-crud.git`
 
 - build  
   **you could make file the jar by gradle**
