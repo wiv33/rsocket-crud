@@ -3,6 +3,7 @@ spring:
     server:
       port: 7000
       transport: tcp
+      address: rsocket-server
 
   jpa:
     show-sql: true

@@ -10,7 +10,7 @@ services:
 
     image: psawesome/rsocket-client
     container_name: rsocket-client
-    hostname: localhost
+#    hostname: localhost
     ports:
       - "8090:8090"
 
