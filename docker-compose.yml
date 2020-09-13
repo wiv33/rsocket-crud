@@ -26,9 +26,9 @@ services:
 
     image: psawesome/rsocket-client
     container_name: rsocket-client
-    hostname: localhost
+#    hostname: localhost
     ports:
-      - "8080:8080"
+      - "8090:8090"
 
     depends_on:
       - ps_rsocket_server
