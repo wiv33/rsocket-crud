@@ -8,8 +8,8 @@ services:
 
       args:
         JAR_FILE: build/libs/*.jar
-    container_name: ps_rsocket_server
-    hostname: ps_rsocket_server
+    container_name: rsocket-server
+    hostname: rsocket-server
     image: psawesome/rsocket-server
     ports:
       - "7000:7000"
