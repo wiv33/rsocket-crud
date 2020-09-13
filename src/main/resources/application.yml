@@ -7,6 +7,4 @@ spring:
 
   jpa:
     show-sql: true
-server:
-  address: rsocket-server
 #debug: true
