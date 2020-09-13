@@ -1,12 +1,13 @@
+
 spring:
   rsocket:
     server:
       port: 7000
       transport: tcp
-      address: rsocket-server
 
   jpa:
     show-sql: true
 server:
   port: 8090
+  address: rsocket-server
 #debug: true
