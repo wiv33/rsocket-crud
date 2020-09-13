@@ -3,7 +3,7 @@ version: '3.7'
 services:
   ps_rsocket_client:
     build:
-      context: .
+      context: ./rsocket-crud-client
       dockerfile: Dockerfile
       args:
         JAR_FILE: build/libs/*.jar
