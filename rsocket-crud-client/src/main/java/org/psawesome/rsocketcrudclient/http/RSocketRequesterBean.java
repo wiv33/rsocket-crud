@@ -21,7 +21,7 @@ public class RSocketRequesterBean {
     @Profile("prod")
     public RSocketRequester rSocketRequesterProd(RSocketRequester.Builder builder) {
         return builder.dataMimeType(MimeTypeUtils.APPLICATION_JSON)
-                .connectTcp("localhost", 7000)
+                .connectTcp("10.128.0.5", 7000)
                 .block();
     }
 }
