@@ -3,7 +3,7 @@ FROM hirokimatsumoto/alpine-openjdk-11
 MAINTAINER PS
 
 VOLUME /tmp
-#EXPOSE 8080
+EXPOSE 8080
 
 # --build-arg build/libs/*.jar
 ARG JAR_FILE
