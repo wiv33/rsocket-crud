@@ -8,3 +8,5 @@ spring:
 ---
 spring:
   profiles: prod
+server:
+  port: 8080
